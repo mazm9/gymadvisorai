@@ -1,0 +1,34 @@
+{
+  "exercises": [
+    {
+      "name": "Bench Press",
+      "targets": ["Chest", "Triceps", "Front Delts"],
+      "equipment": ["Barbell", "Bench"],
+      "risk": ["Shoulder"]
+    },
+    {
+      "name": "Overhead Press",
+      "targets": ["Shoulders", "Triceps"],
+      "equipment": ["Barbell"],
+      "risk": ["Shoulder"]
+    },
+    {
+      "name": "Deadlift",
+      "targets": ["Back", "Hamstrings", "Glutes"],
+      "equipment": ["Barbell"],
+      "risk": ["LowBack"]
+    },
+    {
+      "name": "Squat",
+      "targets": ["Quads", "Glutes"],
+      "equipment": ["Barbell"],
+      "risk": ["Knee"]
+    },
+    {
+      "name": "Pull-up",
+      "targets": ["Back", "Biceps"],
+      "equipment": ["Pullup Bar"],
+      "risk": []
+    }
+  ]
+}

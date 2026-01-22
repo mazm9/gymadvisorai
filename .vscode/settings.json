@@ -1,0 +1,7 @@
+{
+    "python.useEnvironmentsExtension": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "editor.defaultFormatter": "ms-python.python",
+    "notebook.defaultFormatter": "ms-toolsai.jupyter",
+    "python.globalModuleInstallation": true
+}

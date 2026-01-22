@@ -1,0 +1,19 @@
+{
+  "user_id": "u1",
+  "sessions": [
+    {
+      "date": "2026-01-20",
+      "items": [
+        {"exercise": "Bench Press", "sets": 3, "reps": 8, "weight": 60},
+        {"exercise": "Pull-up", "sets": 3, "reps": 8, "weight": 0}
+      ]
+    },
+    {
+      "date": "2026-01-18",
+      "items": [
+        {"exercise": "Squat", "sets": 3, "reps": 5, "weight": 100},
+        {"exercise": "Deadlift", "sets": 3, "reps": 5, "weight": 120}
+      ]
+    }
+  ]
+}
