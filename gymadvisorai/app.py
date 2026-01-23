@@ -1,11 +1,17 @@
-from gymadvisorai.graph.in_memory import load_state, total_tonnage_for_exercise
+import os
+import certifi
+
+os.environ.setdefault("SSL_CERT_FILE", certifi.where())
+
+from gymadvisorai.agent.chatbot import answer
 
 def main():
-    state = load_state()
-    print("User:", state["user_id"])
-    print("Exercises:", len(state["ex"]))
-    print("Sessions:", len(state["sessions"]))
-    print("Bench Press tonnage:", total_tonnage_for_exercise(state, "Bench Press"))
+    print("GymAdvisorAI (type 'exit' to quit)")
+    while True:
+        q = input("\n> ").strip()
+        if not q or q.lower() in {"exit", "quit"}:
+            break
+        print(answer(q))
 
 if __name__ == "__main__":
     main()

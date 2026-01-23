@@ -1,7 +1,6 @@
 from neo4j import GraphDatabase
 from gymadvisorai.config import settings
 
-
 class Neo4jClient:
     def __init__(self):
         self.driver = GraphDatabase.driver(
@@ -14,5 +13,5 @@ class Neo4jClient:
 
     def run(self, query: str, **params):
         with self.driver.session(database=settings.neo4j_db) as session:
-            result = session.run(query, **params)
-            return [record.data() for record in result]
+            res = session.run(query, **params)
+            return [r.data() for r in res]
