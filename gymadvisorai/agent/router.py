@@ -11,7 +11,8 @@ Tools:
 4) primary_exercise_for_muscle(args: {muscle:str})
 5) last_session_for_exercise(args: {exercise:str})
 6) what_if_add_session(args: {sets:int, reps:int, weight:float})
-7) unsupported(args: {reason:str})
+7) workout_summary_last_days(args: {days:int})
+8) unsupported(args: {reason:str})
 
 Rules:
 - If the question is not one of the tools above (general opinion, coaching, etc.), return tool=unsupported.

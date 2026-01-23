@@ -76,9 +76,16 @@ def answer(question: str) -> str:
                 reps=int(args["reps"]),
                 weight=float(args["weight"]),
             )
+        
+        case "workout_summary_last_days":
+            q = queries.workout_summary_last_days(
+                user_id=USER_ID,
+                days=int(args.get("days", 30)),
+            )
 
         case _:
             return "Unsupported question type."
+        
 
     rows = _run(q)
 
@@ -92,4 +99,5 @@ Return:
 - short answer
 - brief explanation of how it was computed (max 3 sentences)
 """
+    
     return chat(prompt, max_completion_tokens=250)

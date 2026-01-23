@@ -77,3 +77,20 @@ def what_if_add_session(sets: int, reps: int, weight: float) -> Query:
         """,
         params={"sets": sets, "reps": reps, "weight": weight},
     )
+
+def workout_summary_last_days(user_id: str, days: int) -> Query:
+    return Query(
+        cypher="""
+        MATCH (u:User {user_id: $user_id})-[:PERFORMED]->(s:WorkoutSession)-[r:INCLUDES]->(e:Exercise)
+        WHERE date(s.date) >= date() - duration({days: $days})
+        WITH
+          count(DISTINCT s) AS sessions,
+          count(r) AS exercise_entries,
+          count(DISTINCT e) AS unique_exercises,
+          min(date(s.date)) AS from_date,
+          max(date(s.date)) AS to_date,
+          coalesce(sum(r.sets * r.reps * r.weight), 0) AS total_tonnage
+        RETURN sessions, exercise_entries, unique_exercises, from_date, to_date, total_tonnage
+        """,
+        params={"user_id": user_id, "days": days},
+    )
