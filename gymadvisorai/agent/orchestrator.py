@@ -1,17 +1,9 @@
-from __future__ import annotations
 from gymadvisorai.graph.neo4j_client import Neo4jClient
-from gymadvisorai.agent.queries import (
-    counting_sessions_last_days,
-    filtering_exercises_without_risk,
-    aggregation_tonnage_exercise_last_days,
-    reasoning_can_train_today_based_on_overlap,
-    temporal_last_session_for_exercise,
-    what_if_add_session_changes_muscle_tonnage,
-)
+import gymadvisorai.agent.queries as queries
 
-USER_ID = "u1"  # na start stałe, później z profilu / logowania
+USER_ID = "u1"
 
-def run_query(q):
+def run_query(q: queries.Query):
     c = Neo4jClient()
     try:
         return c.run(q.cypher, **q.params)
@@ -19,14 +11,12 @@ def run_query(q):
         c.close()
 
 def demo():
-    print("COUNTING:", run_query(counting_sessions_last_days(USER_ID, 30)))
-    print("FILTERING:", run_query(filtering_exercises_without_risk("LowBack")))
-    print("AGG:", run_query(aggregation_tonnage_exercise_last_days(USER_ID, "Bench Press", 30)))
-    print("REASONING:", run_query(reasoning_can_train_today_based_on_overlap("Chest")))
-    print("TEMPORAL:", run_query(temporal_last_session_for_exercise(USER_ID, "Deadlift")))
-    print("WHAT-IF:", run_query(what_if_add_session_changes_muscle_tonnage(
-        USER_ID, muscle="Shoulders", add_sets=3, add_reps=8, add_weight=50, add_exercise="Overhead Press", days=7
-    )))
+    print("COUNTING:", run_query(queries.count_sessions_last_days(USER_ID, 30)))
+    print("FILTERING:", run_query(queries.exercises_without_risk("LowBack")))
+    print("AGG:", run_query(queries.tonnage_for_exercise_last_days("Bench Press", 30)))
+    print("REASONING:", run_query(queries.primary_exercise_for_muscle("Chest")))
+    print("TEMPORAL:", run_query(queries.last_session_for_exercise("Deadlift")))
+    print("WHAT-IF:", run_query(queries.what_if_add_session(sets=3, reps=8, weight=50)))
 
 if __name__ == "__main__":
     demo()

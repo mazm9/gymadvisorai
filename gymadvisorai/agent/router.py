@@ -1,25 +1,34 @@
 import json
 from gymadvisorai.llm import chat
 
-ROUTER_PROMPT = """You are routing gym analytics questions to one of 6 tools.
+ROUTER_PROMPT = """You route gym analytics questions to one of these tools.
 Return ONLY valid JSON with keys: tool, args.
 
 Tools:
-1) counting_sessions_last_days(args: {days:int})
-2) filtering_exercises_without_risk(args: {risk:str})
-3) aggregation_tonnage_exercise_last_days(args: {exercise:str, days:int})
-4) reasoning_exercises_targeting_muscle(args: {muscle:str})
-5) temporal_last_session_for_exercise(args: {exercise:str})
-6) what_if_add_session_changes_muscle_tonnage(args: {muscle:str, add_sets:int, add_reps:int, add_weight:float, add_exercise:str, days:int})
+1) count_sessions_last_days(args: {days:int})
+2) exercises_without_risk(args: {risk:str})
+3) tonnage_for_exercise_last_days(args: {exercise:str, days:int})
+4) primary_exercise_for_muscle(args: {muscle:str})
+5) last_session_for_exercise(args: {exercise:str})
+6) what_if_add_session(args: {sets:int, reps:int, weight:float})
+7) unsupported(args: {reason:str})
 
 Rules:
-- If user doesn't specify days, use 30 (or 7 for what-if).
-- Use exercise/muscle/risk names exactly as in the database if possible.
-- Do not invent data.
+- If the question is not one of the tools above (general opinion, coaching, etc.), return tool=unsupported.
+- If user doesn't specify days, use 30.
+- Return JSON only.
 
 Question:
 """
 
 def route(question: str) -> dict:
-    raw = chat(ROUTER_PROMPT + question, max_tokens=200)
-    return json.loads(raw)
+    raw = (chat(ROUTER_PROMPT + question, max_completion_tokens=200) or "").strip()
+
+    try:
+        r = json.loads(raw)
+        if isinstance(r, dict) and "tool" in r:
+            return r
+    except Exception:
+        pass
+
+    return {"tool": "unsupported", "args": {"reason": "router_returned_invalid_json"}}

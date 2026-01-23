@@ -1,5 +1,5 @@
 from gymadvisorai.graph.neo4j_client import Neo4jClient
-from gymadvisorai.agent import queries
+import gymadvisorai.agent.queries as queries
 from gymadvisorai.agent.router import route
 from gymadvisorai.llm import chat
 
@@ -14,35 +14,71 @@ def _run(q: queries.Query) -> list[dict]:
         c.close()
 
 
+def _missing(name: str) -> str:
+    return f"Missing required argument: {name}."
+
+
 def answer(question: str) -> str:
     r = route(question)
-    tool = r["tool"]
+    tool = r.get("tool", "unsupported")
     args = r.get("args", {}) or {}
 
-    if tool == "counting_sessions_last_days":
-        q = queries.counting_sessions_last_days(USER_ID, days=int(args.get("days", 30)))
-    elif tool == "filtering_exercises_without_risk":
-        q = queries.filtering_exercises_without_risk(args["risk"])
-    elif tool == "aggregation_tonnage_exercise_last_days":
-        q = queries.aggregation_tonnage_exercise_last_days(
-            USER_ID, args["exercise"], days=int(args.get("days", 30))
+    if tool == "unsupported":
+        return (
+            "I can’t answer that with the available tools/data.\n"
+            "Try a BI-style question, e.g.:\n"
+            "- How many sessions did I do in the last 30 days?\n"
+            "- What was my Bench Press tonnage in the last 30 days?\n"
+            "- When was my last Deadlift and what were sets/reps/weight?\n"
         )
-    elif tool == "reasoning_exercises_targeting_muscle":
-        q = queries.reasoning_can_train_today_based_on_overlap(args["muscle"])
-    elif tool == "temporal_last_session_for_exercise":
-        q = queries.temporal_last_session_for_exercise(USER_ID, args["exercise"])
-    elif tool == "what_if_add_session_changes_muscle_tonnage":
-        q = queries.what_if_add_session_changes_muscle_tonnage(
-            USER_ID,
-            muscle=args["muscle"],
-            add_sets=int(args["add_sets"]),
-            add_reps=int(args["add_reps"]),
-            add_weight=float(args["add_weight"]),
-            add_exercise=args["add_exercise"],
-            days=int(args.get("days", 7)),
-        )
-    else:
-        return "Unsupported question type."
+
+    match tool:
+        case "count_sessions_last_days":
+            q = queries.count_sessions_last_days(
+                user_id=USER_ID,
+                days=int(args.get("days", 30)),
+            )
+
+        case "exercises_without_risk":
+            risk = args.get("risk")
+            if not risk:
+                return _missing("risk")
+            q = queries.exercises_without_risk(risk=risk)
+
+        case "tonnage_for_exercise_last_days":
+            exercise = args.get("exercise")
+            if not exercise:
+                return _missing("exercise")
+            q = queries.tonnage_for_exercise_last_days(
+                USER_ID,
+                exercise,
+                days=int(args.get("days", 30)),
+            )
+
+        case "primary_exercise_for_muscle":
+            muscle = args.get("muscle")
+            if not muscle:
+                return _missing("muscle")
+            q = queries.primary_exercise_for_muscle(muscle=muscle)
+
+        case "last_session_for_exercise":
+            exercise = args.get("exercise")
+            if not exercise:
+                return _missing("exercise")
+            q = queries.last_session_for_exercise(exercise=exercise)
+
+        case "what_if_add_session":
+            for k in ("sets", "reps", "weight"):
+                if k not in args:
+                    return _missing(k)
+            q = queries.what_if_add_session(
+                sets=int(args["sets"]),
+                reps=int(args["reps"]),
+                weight=float(args["weight"]),
+            )
+
+        case _:
+            return "Unsupported question type."
 
     rows = _run(q)
 
@@ -56,4 +92,4 @@ Return:
 - short answer
 - brief explanation of how it was computed (max 3 sentences)
 """
-    return chat(prompt, max_tokens=250)
+    return chat(prompt, max_completion_tokens=250)
