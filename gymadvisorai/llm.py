@@ -5,6 +5,8 @@ _client = AzureOpenAI(
     api_key=settings.openai_api_key,
     azure_endpoint=settings.openai_endpoint,
     api_version="2024-02-15-preview",
+    timeout=60.0,
+    max_retries=2,
 )
 
 def chat(text: str, max_completion_tokens: int = 250) -> str:
@@ -13,4 +15,5 @@ def chat(text: str, max_completion_tokens: int = 250) -> str:
         messages=[{"role": "user", "content": text}],
         max_completion_tokens=max_completion_tokens,
     )
-    return r.choices[0].message.content
+    content = r.choices[0].message.content
+    return (content or "").strip()

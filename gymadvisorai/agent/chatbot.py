@@ -100,4 +100,6 @@ Return:
 - brief explanation of how it was computed (max 3 sentences)
 """
     
-    return chat(prompt, max_completion_tokens=250)
+    out = chat(prompt, max_completion_tokens=250)
+    return out if out else f"No answer generated. Tool={tool}, args={args}, rows={rows}"
+
