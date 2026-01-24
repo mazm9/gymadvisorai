@@ -1,11 +1,22 @@
-# App
-openai>=1.40.0
-python-dotenv>=1.0.1
-# Graph
-neo4j>=5.20.0
-# RAG
-chromadb>=0.5.0
-tiktoken>=0.7.0
-# Util
-pandas>=2.2.2
-rich>=13.7.1
+# core
+neo4j>=5.20
+python-dotenv>=1.0
+
+# llm
+openai>=1.0
+
+# rag/nlp
+scikit-learn>=1.4
+numpy>=1.26
+scipy>=1.11
+
+# pdf
+pypdf>=4.0
+reportlab>=4.0
+
+# util
+tqdm>=4.66
+python-dateutil>=2.9
+
+# debugging
+pandas>=2.2

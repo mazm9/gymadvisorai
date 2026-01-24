@@ -1,0 +1,192 @@
+{
+  "users": [
+    {
+      "user_id": "u1",
+      "display_name": "User 1",
+      "goal": "Endurance",
+      "days_per_week": 2,
+      "minutes_per_session": 30,
+      "focus": [
+        "Rehab & mobility"
+      ],
+      "constraints": [
+        "No deep knee flexion"
+      ],
+      "equipment": [
+        "Dumbbells",
+        "Kettlebell"
+      ],
+      "experience_level": "Advanced"
+    },
+    {
+      "user_id": "u2",
+      "display_name": "User 2",
+      "goal": "Rehab & mobility",
+      "days_per_week": 2,
+      "minutes_per_session": 60,
+      "focus": [
+        "Strength"
+      ],
+      "constraints": [],
+      "equipment": [
+        "Barbell",
+        "Bodyweight"
+      ],
+      "experience_level": "Beginner"
+    },
+    {
+      "user_id": "u3",
+      "display_name": "User 3",
+      "goal": "Endurance",
+      "days_per_week": 5,
+      "minutes_per_session": 40,
+      "focus": [
+        "General fitness"
+      ],
+      "constraints": [
+        "No high-impact cardio"
+      ],
+      "equipment": [
+        "Kettlebell",
+        "Machine"
+      ],
+      "experience_level": "Intermediate"
+    },
+    {
+      "user_id": "u4",
+      "display_name": "User 4",
+      "goal": "Hypertrophy",
+      "days_per_week": 4,
+      "minutes_per_session": 40,
+      "focus": [
+        "Hypertrophy"
+      ],
+      "constraints": [
+        "Short sessions only"
+      ],
+      "equipment": [
+        "Barbell",
+        "Resistance Band"
+      ],
+      "experience_level": "Intermediate"
+    },
+    {
+      "user_id": "u5",
+      "display_name": "User 5",
+      "goal": "Hypertrophy",
+      "days_per_week": 4,
+      "minutes_per_session": 30,
+      "focus": [
+        "Rehab & mobility"
+      ],
+      "constraints": [
+        "Limit spinal loading"
+      ],
+      "equipment": [
+        "Bodyweight",
+        "Dumbbells",
+        "Kettlebell",
+        "Machine",
+        "Resistance Band"
+      ],
+      "experience_level": "Advanced"
+    },
+    {
+      "user_id": "u6",
+      "display_name": "User 6",
+      "goal": "Strength",
+      "days_per_week": 2,
+      "minutes_per_session": 30,
+      "focus": [
+        "Rehab & mobility"
+      ],
+      "constraints": [
+        "Avoid overhead pressing"
+      ],
+      "equipment": [
+        "Barbell",
+        "Cable",
+        "Resistance Band",
+        "Trap Bar"
+      ],
+      "experience_level": "Intermediate"
+    },
+    {
+      "user_id": "u7",
+      "display_name": "User 7",
+      "goal": "General fitness",
+      "days_per_week": 4,
+      "minutes_per_session": 40,
+      "focus": [
+        "Fat loss"
+      ],
+      "constraints": [
+        "No deep knee flexion"
+      ],
+      "equipment": [
+        "Bodyweight",
+        "Dumbbells",
+        "Kettlebell"
+      ],
+      "experience_level": "Beginner"
+    },
+    {
+      "user_id": "u8",
+      "display_name": "User 8",
+      "goal": "Rehab & mobility",
+      "days_per_week": 3,
+      "minutes_per_session": 40,
+      "focus": [
+        "General fitness"
+      ],
+      "constraints": [
+        "Limit spinal loading"
+      ],
+      "equipment": [
+        "Barbell",
+        "Cable",
+        "Kettlebell",
+        "Machine"
+      ],
+      "experience_level": "Beginner"
+    },
+    {
+      "user_id": "u9",
+      "display_name": "User 9",
+      "goal": "Fat loss",
+      "days_per_week": 4,
+      "minutes_per_session": 60,
+      "focus": [
+        "Fat loss"
+      ],
+      "constraints": [],
+      "equipment": [
+        "Cable",
+        "Dumbbells",
+        "Kettlebell",
+        "Trap Bar"
+      ],
+      "experience_level": "Intermediate"
+    },
+    {
+      "user_id": "u10",
+      "display_name": "User 10",
+      "goal": "Endurance",
+      "days_per_week": 5,
+      "minutes_per_session": 40,
+      "focus": [
+        "Fat loss"
+      ],
+      "constraints": [
+        "Avoid overhead pressing"
+      ],
+      "equipment": [
+        "Bodyweight",
+        "Cable",
+        "Kettlebell",
+        "Trap Bar"
+      ],
+      "experience_level": "Advanced"
+    }
+  ]
+}
