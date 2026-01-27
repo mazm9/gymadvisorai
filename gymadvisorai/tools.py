@@ -153,9 +153,6 @@ def what_if_add_session(sets: int, reps: int, weight: float) -> str:
     tonnage = sets * reps * weight
     return f"What-if tonnage: {sets}x{reps} @ {weight} = {tonnage:.1f}"
 
-
-# Additional tools to cover reasoning and complex scenario requirements
-
 def plateau_reasoning(exercise: str, user_id: str = DEFAULT_USER_ID) -> str:
     """Reasoning-style query: detect plateau by comparing last 3 vs previous 3 sessions."""
     c = Neo4jClient()
@@ -334,10 +331,10 @@ def _build_plan_json(brief: dict[str, Any], allowed: list[dict[str, Any]], volum
     def scale_sets(sets: int, is_main: bool) -> int:
         return sets if is_main else ceil_int(sets * volume_multiplier)
 
-    # time-based cap on number of movements
+    # time based cap on number of movements
     max_moves = 4 if mins <= 50 else 5
 
-    # Build a sensible 3day template:
+    # build a sensible 3day template:
     plan_days: list[dict[str, Any]] = []
 
     def add_day(name: str, movements: list[dict[str, Any]]):
@@ -358,7 +355,7 @@ def _build_plan_json(brief: dict[str, Any], allowed: list[dict[str, Any]], volum
         acc = {"sets": 3, "reps": "10–15", "rir": 2, "rest": "60–90s"}
         prehab = {"sets": 2, "reps": "15–20", "rir": 3, "rest": "60s"}
 
-    # Shoulder constraint
+    # constraints
     face_pull = _pick_by_keywords(allowed, ["Face Pull"])
     ext_rot = _pick_by_keywords(allowed, ["External Rotations", "External Rotation"])
 
@@ -398,7 +395,7 @@ def _build_plan_json(brief: dict[str, Any], allowed: list[dict[str, Any]], volum
         d3.append({"exercise": ext_rot, "sets": scale_sets(prehab["sets"], False), "reps": prehab["reps"], "rir": prehab["rir"], "rest": prehab["rest"], "tag": "prehab"})
     add_day("Day 3 — Upper Volume", d3)
 
-    # Truncate or extend for different days_per_week
+    # truncate or extend for different days_per_week
     if days < 3:
         plan_days = plan_days[:days]
     elif days > 3:
@@ -718,7 +715,7 @@ def what_if_reduce_volume(percent: int = 20, user_id: str = DEFAULT_USER_ID) -> 
         delta = a_sets - b_sets
         extra = f"\\nBASELINE accessory sets: {b_sets}\\nAFTER accessory sets: {a_sets} (delta {delta})\\n"
 
-        # Attach baseline for the LLM to explain diffs
+        # attach baseline for the LLM to explain diffs
         after_with_baseline = dict(after)
         after_with_baseline["baseline"] = baseline
         return _polish_with_llm(brief, after_with_baseline, mode="what_if", extra=extra)

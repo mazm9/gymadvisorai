@@ -55,13 +55,6 @@ def llm_chat(prompt: str, *, max_tokens: int = 800) -> str:
 
 
 def llm_embed(texts: list[str]) -> list[list[float]]:
-    """Get embeddings for a list of texts (Azure OpenAI).
-
-    Used by the baseline RAG to build a more realistic embedding index.
-    Requires:
-      - LLM_ENABLED=true
-      - OPENAI_EMBEDDING_MODEL set
-    """
     client = _get_client()
     model = settings.openai_embedding_model
     if not model:

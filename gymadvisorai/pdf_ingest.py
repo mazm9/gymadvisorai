@@ -15,11 +15,6 @@ from gymadvisorai.graph import (
 
 _DATE_RE = re.compile(r"(20\d{2}-\d{2}-\d{2})")
 _KEYVAL_RE = re.compile(r"^([A-Za-z ][A-Za-z ]+):\s*(.+)$")
-
-# Synthetic PDFs in this project are text-based (no OCR needed) and use stable
-# headings like "User Profile:" and "Plan:". We keep heuristic parsers so the
-# pipeline works offline, with optional LLM extraction when configured.
-
 _USER_HEADER_RE = re.compile(r"User Profile:\s*(.+?)\s*\((u\d+)\)")
 _PLAN_HEADER_RE = re.compile(r"Plan:\s*(.+)$")
 
@@ -41,14 +36,13 @@ def extract_text_from_pdf(pdf_path: str) -> str:
             return "\n".join(page.extract_text() or "" for page in reader.pages)
         except Exception as e:
             raise RuntimeError(
-                "No PDF reader available. Install 'pypdf' (recommended) or 'PyPDF2'."
+                "No PDF reader available."
             ) from e
 
 
 # Workout brief extraction
 def _heuristic_parse_brief(text: str) -> dict[str, Any] | None:
-    """Parse a simple 'User Profile & Workout Brief' PDF exported as text.
-
+    """ Fallback parser for simple workout briefs.
     Supports lines like:
       Goal: Strength
       Days Per Week: 3
@@ -260,10 +254,7 @@ def ingest_workout_pdf(pdf_path: str, user_id: str = "u1") -> dict[str, Any]:
 
     return {"user_id": uid, "brief": brief, "sessions": sessions_data.get("sessions", [])}
 
-
-# -----------------------------
-# Multi-document ingestion
-# -----------------------------
+# multi-document ingestion
 
 
 def _extract_user_profiles_heuristic(text: str) -> list[dict[str, Any]]:
@@ -275,7 +266,7 @@ def _extract_user_profiles_heuristic(text: str) -> list[dict[str, Any]]:
       "Focus areas: ... Constraints/limitations: ... Available equipment: ..."
     """
     profiles: list[dict[str, Any]] = []
-    # Split by header occurrences
+    # split by header occurrences
     matches = list(_USER_HEADER_RE.finditer(text or ""))
     if not matches:
         return profiles
@@ -288,7 +279,7 @@ def _extract_user_profiles_heuristic(text: str) -> list[dict[str, Any]]:
         display_name = m.group(1).strip()
         user_id = m.group(2).strip()
 
-        # Pull key attributes from sentences
+        # key attributes from sentences
         goal = _first_group(chunk, r"Goal:\s*([^\.]+)\.")
         exp = _first_group(chunk, r"Experience:\s*([^\.]+)\.")
         dpw = _first_int(chunk, r"frequency:\s*(\d+)\s*days/week")
@@ -387,7 +378,7 @@ def ingest_user_profiles_pdf(pdf_path: str) -> dict[str, Any]:
 
 
 def ingest_training_plans_pdf(pdf_path: str) -> dict[str, Any]:
-    """Ingest a PDF containing multiple training plans (RFP-like) into Neo4j."""
+    """Ingest a PDF containing multiple training plans into Neo4j."""
     text = extract_text_from_pdf(pdf_path)
     plans = _extract_training_plans_heuristic(text)
     c = Neo4jClient()
@@ -415,14 +406,12 @@ def ingest_workout_logs_pdf(pdf_path: str, user_id: str | None = None) -> dict[s
     """
     text = extract_text_from_pdf(pdf_path)
 
-    # Detect per-user blocks like "User u7 - Session Summary" then parse dates/lines.
     blocks = re.split(r"User\s+(u\d+)\s+-\s+Session Summary", text)
-    # re.split returns [prefix, uid1, chunk1, uid2, chunk2, ...]
     parsed: dict[str, list[dict[str, Any]]] = {}
     if len(blocks) > 1:
         it = iter(blocks[1:])
         for uid, chunk in zip(it, it):
-            # crude parse: find lines like "YYYY-MM-DD:" and extract first 3 items separated by ';'
+            # parse
             sessions: list[dict[str, Any]] = []
             for line in chunk.splitlines():
                 if not line.strip():
@@ -431,7 +420,6 @@ def ingest_workout_logs_pdf(pdf_path: str, user_id: str | None = None) -> dict[s
                 if not m:
                     continue
                 dt = m.group(1)
-                # After date, items follow e.g. "2026-01-12: Bench Press 3x10@80kg; ..."
                 parts = line.split(":", 1)
                 if len(parts) != 2:
                     continue
@@ -441,7 +429,7 @@ def ingest_workout_logs_pdf(pdf_path: str, user_id: str | None = None) -> dict[s
                     t = token.strip()
                     if not t:
                         continue
-                    # cardio: "Cycling 15min"
+                    # cardio:
                     m_cardio = re.match(r"(.+?)\s+(\d+)\s*min", t)
                     if m_cardio:
                         items.append({"exercise": m_cardio.group(1).strip(), "minutes": int(m_cardio.group(2))})

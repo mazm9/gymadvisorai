@@ -6,7 +6,7 @@ def load_pdf_text(path: str | Path) -> str:
     Extract text from a PDF without OCR.
     Works for text-based PDFs (your generated ones are text-based).
     """
-    from pypdf import PdfReader  # pip install pypdf
+    from pypdf import PdfReader
 
     p = Path(path)
     reader = PdfReader(str(p))

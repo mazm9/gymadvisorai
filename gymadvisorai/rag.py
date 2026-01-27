@@ -28,8 +28,6 @@ class Retrieved:
 
 class TfidfStore:
     """Very small TF-IDF store.
-
-    This is a fallback baseline that works offline (no embeddings required).
     """
 
     def __init__(self, path: str | None = None):
@@ -112,13 +110,10 @@ class TfidfStore:
 
 class EmbeddingStore:
     """Embedding-based baseline RAG index.
-
-    Uses Azure OpenAI embeddings when configured.
     """
 
     def __init__(self, path: str | None = None):
         base = Path(path or settings.rag_store_path)
-        # Keep separate from TF-IDF pickle.
         self.path = base.with_suffix(base.suffix + ".emb") if base.suffix else Path(str(base) + ".emb")
         self.docs: list[str] = []
         self.vecs: list[list[float]] = []
@@ -226,8 +221,7 @@ def _collect_demo_docs() -> list[str]:
             )
         )
 
-    # Index any PDFs placed under gymadvisorai/data (including raw_pdfs/).
-    # This lets baseline RAG "read" unstructured sources (CV-like profiles, RFP-like plans, logs).
+    # Index any PDFs placed under gymadvisorai/data
     data_dir = Path(__file__).resolve().parent / "data"
     pdf_dirs = [data_dir, data_dir / "raw_pdfs"]
 
@@ -243,7 +237,6 @@ def _collect_demo_docs() -> list[str]:
                 rel = p.relative_to(data_dir) if data_dir in p.parents else p.name
                 docs.append(f"PDF:{rel}\n" + extract_text_from_pdf(str(p)))
             except Exception:
-                # PDFs are optional; ignore failures so offline baseline still builds
                 pass
 
     return docs

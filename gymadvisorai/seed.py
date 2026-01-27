@@ -27,16 +27,13 @@ def seed_demo_multi(
     use_pdfs: bool = False,
     pdf_dir: str | None = None,
 ) -> None:
-    """Seed Neo4j with a small but sufficient demo dataset.
+    """Seed Neo4j with demo dataset.
 
     This version seeds:
       - exercise taxonomy
       - multiple users (user briefs)
       - training plans (the thing we *match* users to)
       - sessions for u1 (so temporal/aggregation queries still work)
-
-    Keeping ~20-30 sessions is enough for presentation, but we add multiple user profiles
-    to make the use-case analogous to TalentMatchAI (candidate -> project matching).
     """
     c = Neo4jClient()
     try:
@@ -67,7 +64,6 @@ def seed_demo_multi(
 
         # Plans
         if use_pdfs:
-            # Prefer RFP-like PDF if present; otherwise fall back to JSON.
             d = Path(pdf_dir) if pdf_dir else (Path(__file__).parent / "data")
             pdf = next(iter(sorted(d.glob("*plans*pdf"))), None)
             if pdf:
@@ -95,13 +91,13 @@ def seed_demo_multi(
                     exercises=p.get("exercises", []) or [],
                 )
 
-        # Users + Sessions
+        # users + sessions
         requested = set(users or []) if users else None
 
         if use_pdfs:
             d = Path(pdf_dir) if pdf_dir else (Path(__file__).parent / "data")
 
-            # Prefer unstructured profiles PDF if present.
+            # prefer unstructured profiles PDF if present
             prof_pdf = next(iter(sorted(d.glob("*profile*pdf"))), None)
             if prof_pdf:
                 ingest_user_profiles_pdf(str(prof_pdf))
@@ -130,7 +126,7 @@ def seed_demo_multi(
                         experience_level=u.get("experience_level") or "Intermediate",
                     )
 
-            # Prefer unstructured workout logs PDF if present.
+            # prefer unstructured workout logs PDF if present
             logs_pdf = next(iter(sorted(d.glob("*log*pdf"))), None)
             if logs_pdf:
                 ingest_workout_logs_pdf(str(logs_pdf))

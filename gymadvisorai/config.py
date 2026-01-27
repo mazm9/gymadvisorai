@@ -60,8 +60,6 @@ class Settings:
         if not self.openai_model:
             raise RuntimeError("LLM_ENABLED=true but OPENAI_MODEL is missing")
 
-        # If OPENAI_EMBEDDING_MODEL is missing, baseline RAG will fall back to TF-IDF
-
         if self.openai_token_param not in {"max_tokens", "max_completion_tokens"}:
             raise RuntimeError(
                 "OPENAI_TOKEN_PARAM must be 'max_tokens' or 'max_completion_tokens'. "

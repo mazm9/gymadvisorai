@@ -23,7 +23,7 @@ SCHEMA: list[str] = [
 
 @dataclass
 class Neo4jClient:
-    """Tiny Neo4j wrapper."""
+    """Neo4j wrapper."""
 
     uri: str = settings.neo4j_uri
     user: str = settings.neo4j_user
@@ -57,10 +57,6 @@ def upsert_training_plan(
     equipment: Iterable[str] = (),
     exercises: Iterable[str] = (),
 ) -> None:
-    """Create/update a training plan and link it to its defining entities.
-
-    This is the GymAdvisorAI equivalent of an RFP/role profile in TalentMatchAI.
-    """
     ensure_schema(client)
     client.run(
         "MERGE (p:TrainingPlan {name:$n}) "
@@ -195,8 +191,6 @@ def upsert_workout_brief(
     experience_level: str | None = None,
 ) -> None:
     """Upsert the latest workout brief for a user.
-
-    We keep exactly one :WorkoutBrief per user (user_id unique) to keep the MVP simple.
     """
     ensure_schema(client)
     client.run("MERGE (u:User {user_id:$u})", u=user_id)

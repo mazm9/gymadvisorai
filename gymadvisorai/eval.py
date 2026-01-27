@@ -418,7 +418,7 @@ def _write_pdf_artifacts(report: dict, out_dir: Path) -> dict[str, str]:
     styles = getSampleStyleSheet()
     paths: dict[str, str] = {}
 
-    # --- eval_report.pdf ---
+    # eval_report.pdf
     pdf_eval = out_dir / "eval_report.pdf"
     doc = SimpleDocTemplate(str(pdf_eval), pagesize=A4, title="GymAdvisorAI - RAG vs GraphRAG Evaluation")
     story = []
@@ -509,7 +509,7 @@ def _write_pdf_artifacts(report: dict, out_dir: Path) -> dict[str, str]:
     doc.build(story)
     paths["pdf_eval"] = str(pdf_eval)
 
-    # --- matching_overview.pdf ---
+    # matching_overview.pdf
     pdf_match = out_dir / "matching_overview.pdf"
     doc2 = SimpleDocTemplate(str(pdf_match), pagesize=A4, title="GymAdvisorAI - Matching Overview")
     s2 = []
@@ -559,7 +559,7 @@ def _write_artifacts(report: dict, out_dir: Path) -> dict:
     json_path = out_dir / "eval_report.json"
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # CSV (per-case, flattened)
+    # CSV
     csv_path = out_dir / "eval_cases.csv"
     with csv_path.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -578,7 +578,7 @@ def _write_artifacts(report: dict, out_dir: Path) -> dict:
                     ]
                 )
 
-    # Markdown (presentation/PDF friendly)
+    # Markdown
     md_path = out_dir / "eval_report.md"
     s = report["summary"]
     g = s["graphrag"]
@@ -625,11 +625,6 @@ def _write_artifacts(report: dict, out_dir: Path) -> dict:
 
 
 def run_eval(seed: bool = True, out_dir: str | None = "reports") -> dict:
-    """Run TEG-style evaluation with numeric/date/list/reasoning metrics + artifacts.
-
-    - Uses deterministic ground-truth computed from demo JSON.
-    - Writes eval_report.json / eval_cases.csv / eval_report.md for easy PDF/presentation inclusion.
-    """
     if seed:
         settings.validate_neo4j()
         seed_demo()
@@ -644,7 +639,6 @@ def run_eval(seed: bool = True, out_dir: str | None = "reports") -> dict:
         "meta": {
             "llm_enabled": bool(settings.llm_enabled),
             "eval_today": truth.today.isoformat(),
-            "note": "RAG baseline quality improves with LLM-enabled answer synthesis; GraphRAG should remain tool-driven/deterministic.",
         },
         "summary": {
             "graphrag": g_summary,
