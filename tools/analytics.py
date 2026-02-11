@@ -51,7 +51,7 @@ def run(spec: Dict[str, Any]) -> Dict[str, Any]:
             ],
         }
 
-    # --- temporal / history ---
+
     if op in ("latest_match", "diff_matches"):
         events = [e for e in read_events() if e.get("type") == "match_result"]
         if not events:
@@ -77,7 +77,7 @@ def run(spec: Dict[str, Any]) -> Dict[str, Any]:
             "b_ts": b.get("ts"),
         }
 
-    # --- catalog-backed analytics ---
+
     catalog = load_catalog(default_catalog_path())
     exercises = [e.model_dump() for e in catalog.exercises]
 
@@ -106,7 +106,6 @@ def run(spec: Dict[str, Any]) -> Dict[str, Any]:
         equipment = set([x.lower().strip() for x in (spec.get("equipment") or [])])
         tags = set([x.lower().strip() for x in (spec.get("tags") or [])])
 
-        # support both names: exclude_contraindications and exclude_contra
         exclude_raw = spec.get("exclude_contraindications")
         if exclude_raw is None:
             exclude_raw = spec.get("exclude_contra")
@@ -139,7 +138,6 @@ def run(spec: Dict[str, Any]) -> Dict[str, Any]:
 
     # AGGREGATE MUSCLES
     if op in ("aggregate", "aggregate_muscles"):
-        # either explicit ids, or use last matcher top
         ids = spec.get("exercise_ids")
         if not ids and spec.get("input") == "last_match_top":
             ev = _latest_match_event()

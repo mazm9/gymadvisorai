@@ -101,10 +101,9 @@ def build_graph_with_langchain(
     transformer = LLMGraphTransformer(llm=llm)
     graph_docs = transformer.convert_to_graph_documents(docs)
 
-    # Add to Neo4j via langchain graph helper
+
     graph.add_graph_documents(graph_docs, include_source=True)
 
-    # Quick stats (best-effort)
     nodes = 0
     rels = 0
     try:

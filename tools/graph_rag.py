@@ -39,7 +39,6 @@ def generate_edges_from_catalog(catalog_json: str = "data/catalog/exercises.json
     with open(catalog_json, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Accept both {"exercises": [...]} and plain list
     exercises = data.get("exercises") if isinstance(data, dict) else data
     if not isinstance(exercises, list):
         return []
@@ -88,7 +87,6 @@ def count_exercises_with_equipment(
         return {"type": "graph_count", "allowed": [], "exact": exact, "count": 0, "exercise_names": []}
 
     if not os.path.exists(graph_json):
-        # best-effort: build from CSV + catalog now
         ingest_edges_to_json()
 
     with open(graph_json, "r", encoding="utf-8") as f:
@@ -251,7 +249,6 @@ def query_graph_local(query_text: str, top_k: int = 25) -> Dict[str, Any]:
     """
     g = _load_local_graph()
     out = _query_local(g, query_text)
-    # best-effort limit
     if isinstance(out.get("edges"), list):
         out["edges"] = out["edges"][:top_k]
     if isinstance(out.get("matched_nodes"), list):
@@ -261,7 +258,6 @@ def query_graph_local(query_text: str, top_k: int = 25) -> Dict[str, Any]:
 def ingest_edges_to_json(edges_csv: str = "data/graph/edges.csv", out_json: str = "data/graph/graph.json") -> Dict[str, Any]:
     edges: List[Dict[str, str]] = []
 
-    # 1) Hand-authored edges (optional)
     if os.path.exists(edges_csv):
         with open(edges_csv, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -273,7 +269,6 @@ def ingest_edges_to_json(edges_csv: str = "data/graph/edges.csv", out_json: str 
                         "relation": row.get("relation", "related_to"),
                     })
 
-    # 2) Structured catalog edges (deterministic, rich)
     edges.extend(generate_edges_from_catalog("data/catalog/exercises.json"))
     edges = _dedup_edges(edges)
 

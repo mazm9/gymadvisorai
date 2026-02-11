@@ -87,8 +87,6 @@ class Agent:
         trace: List[TraceStep] = []
         sources: List[Dict[str, Any]] = []
 
-        # Fast, deterministic routing for the project-required query types.
-        # This avoids brittle LLM routing when the intent is obvious.
         ql = (user_query or "").strip().lower()
         if any(k in ql for k in ["what-if", "co jeśli", "co sie stanie", "co się stanie", "symul", "usuń sprzęt", "usun sprzet", "brak sprzętu", "brak sprzetu"]):
             forced_tool = "what_if"
@@ -176,7 +174,7 @@ Observation:
             trace.append(TraceStep(
                 step=step,
                 intent=intent,
-                tool=tool,  # type: ignore
+                tool=tool,
                 tool_input=tool_input,
                 observation=observation,
                 reflection=reflection

@@ -22,8 +22,7 @@ class Exercise(BaseModel):
     movement: str = ""
     equipment: List[str] = Field(default_factory=list)
 
-    # Accept both numeric and string difficulty (dataset uses ints).
-    # Mapping: 1->beginner, 2->intermediate, 3->advanced
+
     difficulty: Union[str, int] = "intermediate"
 
     contraindications: List[str] = Field(default_factory=list)
@@ -38,7 +37,7 @@ class Exercise(BaseModel):
         if isinstance(v, int):
             mapping = {1: "beginner", 2: "intermediate", 3: "advanced"}
             return mapping.get(v, "intermediate")
-        # allow strings like "1"/"2"/"3"
+
         if isinstance(v, str):
             s = v.strip().lower()
             if s.isdigit():
@@ -46,7 +45,6 @@ class Exercise(BaseModel):
                 return mapping.get(s, "intermediate")
             if s in ("beginner", "intermediate", "advanced"):
                 return s
-            # fallback
             return "intermediate"
         return "intermediate"
 

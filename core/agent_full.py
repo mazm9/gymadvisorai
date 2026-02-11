@@ -27,7 +27,6 @@ def _safe_json_loads(text: str) -> Optional[Dict[str, Any]]:
     try:
         return json.loads(text)
     except Exception:
-        # sometimes model returns extra text; try to extract a JSON object
         m = None
         try:
             m = __import__("re").search(r"\{[\s\S]*\}", text)
@@ -83,7 +82,6 @@ class AgentFull:
             "required": ["intent", "tool", "tool_input", "sufficient", "final_answer"],
         }
 
-        # conversation scratch (kept short)
         context_blocks: List[str] = []
         last_obs: str = ""
 
@@ -108,7 +106,6 @@ class AgentFull:
             raw = self.llm.generate(system, planner_prompt).text
             plan = _safe_json_loads(raw)
             if not plan:
-                # fail safe: return raw as answer
                 trace["planner_parse_error"] = True
                 trace["planner_raw"] = raw
                 return raw, trace
@@ -135,7 +132,6 @@ class AgentFull:
                 "observation": obs,
             })
 
-        # max steps reached -> synthesize from last observation
         synth_prompt = (
             "Synthesize a concise final answer using the last observation. "
             "If evidence exists, reference it briefly.\n\n"
@@ -151,7 +147,6 @@ class AgentFull:
     def _call_tool(self, tool: str, tool_input: Dict[str, Any], user_query: str, knowledge_mode: str) -> Dict[str, Any]:
         if tool == "matcher":
             from tools.matcher import match_exercises
-            # tool_input may include overrides; if not, try to keep minimal.
             payload = dict(tool_input)
             payload.setdefault("query", user_query)
             return match_exercises(payload)
@@ -162,7 +157,6 @@ class AgentFull:
 
         if tool == "what_if":
             from tools.matcher import match_exercises
-            # expected: {"baseline": {...}, "whatif": {...}, "top_n": 10}
             baseline = tool_input.get("baseline") or {}
             whatif = tool_input.get("whatif") or {}
             top_n = int(tool_input.get("top_n") or 10)

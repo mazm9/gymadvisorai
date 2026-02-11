@@ -36,7 +36,6 @@ class AzureOpenAILLM(BaseLLM):
         self.deployment = deployment
 
     def generate(self, system: str, user: str) -> LLMResponse:
-        # Some Azure deployments don't support temperature/top_p, so we keep it minimal.
         resp = self.client.chat.completions.create(
             model=self.deployment,
             messages=[
@@ -50,7 +49,6 @@ class MockLLM(BaseLLM):
     def generate(self, system: str, user: str) -> LLMResponse:
         u = (system + "\n" + user).lower()
         if "return json" in u:
-            # Router / reflection prompts expect JSON output.
             if "next_tool" in u and "next_tool_input" in u:
                 payload = {
                     "sufficient": True,

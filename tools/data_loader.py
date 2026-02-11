@@ -15,14 +15,14 @@ def _read_json(path: str) -> Any:
 
 def _try_import_yaml():
     try:
-        import yaml  # type: ignore
+        import yaml
         return yaml
     except Exception:
         return None
 
 def _try_import_jsonschema():
     try:
-        import jsonschema  # type: ignore
+        import jsonschema
         return jsonschema
     except Exception:
         return None

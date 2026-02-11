@@ -52,7 +52,6 @@ def extract_graph_from_docs(docs_dir: str = "data/docs", out_csv: str = "data/gr
         for ch in _chunk(txt)[:max_chunks]:
             user = _PROMPT + "\n\nTEXT:\n" + ch
             raw = llm.generate("You output JSON only.", user).text
-            # naive json extraction
             start, end = raw.find("{"), raw.rfind("}")
             if start == -1 or end == -1 or end <= start:
                 continue

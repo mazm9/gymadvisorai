@@ -20,7 +20,7 @@ def query(query_text: str, run_vector: bool = True, run_graph: bool = True) -> D
             from .vector_rag import query as _vquery
 
             vector_obs = _vquery(query_text)
-        except Exception as e:  # pragma: no cover - defensive
+        except Exception as e:
             vector_obs = {"error": str(e)}
 
     if run_graph:
@@ -28,10 +28,10 @@ def query(query_text: str, run_vector: bool = True, run_graph: bool = True) -> D
             from .graph_rag import query as _gquery
 
             graph_obs = _gquery(query_text)
-        except Exception as e:  # pragma: no cover - defensive
+        except Exception as e:
             graph_obs = {"error": str(e)}
 
-    # Build a merged summary: matched nodes, edges, and simple stats.
+    # Build a merged summary
     matched_nodes: Set[Tuple[str, str]] = set()
     edges_set: Set[Tuple[str, str, str, str]] = set()
 
