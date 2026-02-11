@@ -1,0 +1,394 @@
+{
+  "edges": [
+    {
+      "source": "db_bench_neutral",
+      "relation": "targets",
+      "target": "Chest"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "contraindicated_for",
+      "target": "shoulder_pressing_pain_severe"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "alternative",
+      "target": "machine_chest_press"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "alternative",
+      "target": "pushup_handles"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "db_bench_neutral",
+      "relation": "has_tag",
+      "target": "neutral_grip"
+    },
+    {
+      "source": "machine_chest_press",
+      "relation": "targets",
+      "target": "Chest"
+    },
+    {
+      "source": "machine_chest_press",
+      "relation": "contraindicated_for",
+      "target": "shoulder_pressing_pain_severe"
+    },
+    {
+      "source": "machine_chest_press",
+      "relation": "alternative",
+      "target": "db_bench_neutral"
+    },
+    {
+      "source": "machine_chest_press",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "machine_chest_press",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "targets",
+      "target": "Shoulders"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "contraindicated_for",
+      "target": "shoulder_pressing_pain_severe"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "alternative",
+      "target": "db_shoulder_press_neutral"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "alternative",
+      "target": "cable_press"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "landmine_press",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "face_pull",
+      "relation": "targets",
+      "target": "Rear delts"
+    },
+    {
+      "source": "face_pull",
+      "relation": "alternative",
+      "target": "band_pull_apart"
+    },
+    {
+      "source": "face_pull",
+      "relation": "has_tag",
+      "target": "prehab"
+    },
+    {
+      "source": "face_pull",
+      "relation": "has_tag",
+      "target": "scapular"
+    },
+    {
+      "source": "face_pull",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "external_rotation",
+      "relation": "targets",
+      "target": "Rotator cuff"
+    },
+    {
+      "source": "external_rotation",
+      "relation": "has_tag",
+      "target": "prehab"
+    },
+    {
+      "source": "external_rotation",
+      "relation": "has_tag",
+      "target": "rotator_cuff"
+    },
+    {
+      "source": "external_rotation",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "chest_supported_row",
+      "relation": "targets",
+      "target": "Upper back"
+    },
+    {
+      "source": "chest_supported_row",
+      "relation": "alternative",
+      "target": "cable_row"
+    },
+    {
+      "source": "chest_supported_row",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "chest_supported_row",
+      "relation": "has_tag",
+      "target": "back_friendly"
+    },
+    {
+      "source": "lat_pulldown",
+      "relation": "targets",
+      "target": "Lats"
+    },
+    {
+      "source": "lat_pulldown",
+      "relation": "alternative",
+      "target": "assisted_pullup"
+    },
+    {
+      "source": "lat_pulldown",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "targets",
+      "target": "Quads"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "contraindicated_for",
+      "target": "knee_pain_deep_flexion"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "alternative",
+      "target": "leg_press"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "alternative",
+      "target": "split_squat_short_range"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "goblet_squat",
+      "relation": "has_tag",
+      "target": "knee_friendly"
+    },
+    {
+      "source": "leg_press",
+      "relation": "targets",
+      "target": "Quads"
+    },
+    {
+      "source": "leg_press",
+      "relation": "contraindicated_for",
+      "target": "knee_pain_deep_flexion"
+    },
+    {
+      "source": "leg_press",
+      "relation": "alternative",
+      "target": "goblet_squat"
+    },
+    {
+      "source": "leg_press",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "leg_press",
+      "relation": "has_tag",
+      "target": "knee_friendly"
+    },
+    {
+      "source": "rdl",
+      "relation": "targets",
+      "target": "Hamstrings"
+    },
+    {
+      "source": "rdl",
+      "relation": "contraindicated_for",
+      "target": "low_back_pain"
+    },
+    {
+      "source": "rdl",
+      "relation": "alternative",
+      "target": "hip_thrust"
+    },
+    {
+      "source": "rdl",
+      "relation": "alternative",
+      "target": "leg_curl"
+    },
+    {
+      "source": "rdl",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "rdl",
+      "relation": "has_tag",
+      "target": "strength"
+    },
+    {
+      "source": "incline_walk",
+      "relation": "targets",
+      "target": "Cardio"
+    },
+    {
+      "source": "incline_walk",
+      "relation": "alternative",
+      "target": "bike"
+    },
+    {
+      "source": "incline_walk",
+      "relation": "has_tag",
+      "target": "fat_loss"
+    },
+    {
+      "source": "incline_walk",
+      "relation": "has_tag",
+      "target": "low_impact"
+    },
+    {
+      "source": "bike",
+      "relation": "targets",
+      "target": "Cardio"
+    },
+    {
+      "source": "bike",
+      "relation": "alternative",
+      "target": "incline_walk"
+    },
+    {
+      "source": "bike",
+      "relation": "has_tag",
+      "target": "fat_loss"
+    },
+    {
+      "source": "bike",
+      "relation": "has_tag",
+      "target": "low_impact"
+    },
+    {
+      "source": "pushup_handles",
+      "relation": "targets",
+      "target": "Chest"
+    },
+    {
+      "source": "pushup_handles",
+      "relation": "contraindicated_for",
+      "target": "shoulder_pressing_pain_severe"
+    },
+    {
+      "source": "pushup_handles",
+      "relation": "alternative",
+      "target": "db_bench_neutral"
+    },
+    {
+      "source": "pushup_handles",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "pushup_handles",
+      "relation": "has_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "targets",
+      "target": "Quads"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "contraindicated_for",
+      "target": "knee_pain_deep_flexion"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "alternative",
+      "target": "leg_press"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "alternative",
+      "target": "goblet_squat"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "split_squat_short_range",
+      "relation": "has_tag",
+      "target": "knee_friendly"
+    },
+    {
+      "source": "leg_curl",
+      "relation": "targets",
+      "target": "Hamstrings"
+    },
+    {
+      "source": "leg_curl",
+      "relation": "alternative",
+      "target": "rdl"
+    },
+    {
+      "source": "leg_curl",
+      "relation": "has_tag",
+      "target": "hypertrophy"
+    },
+    {
+      "source": "shoulder_pressing_pain",
+      "relation": "prefer_tag",
+      "target": "neutral_grip"
+    },
+    {
+      "source": "shoulder_pressing_pain",
+      "relation": "prefer_tag",
+      "target": "shoulder_friendly"
+    },
+    {
+      "source": "knee_pain_deep_flexion",
+      "relation": "prefer_tag",
+      "target": "knee_friendly"
+    },
+    {
+      "source": "knee_pain_deep_flexion",
+      "relation": "avoid_pattern",
+      "target": "deep_squat"
+    },
+    {
+      "source": "low_back_pain",
+      "relation": "avoid_pattern",
+      "target": "hinge"
+    }
+  ]
+}

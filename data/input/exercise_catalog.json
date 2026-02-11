@@ -1,0 +1,376 @@
+{
+  "version": "2026-02-11",
+  "exercises": [
+    {
+      "id": "db_bench_neutral",
+      "name": "Dumbbell Bench Press (Neutral Grip)",
+      "movement": "push_horizontal",
+      "muscles_primary": [
+        "Chest"
+      ],
+      "muscles_secondary": [
+        "Triceps",
+        "Shoulders"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "difficulty": 2,
+      "tags": [
+        "hypertrophy",
+        "shoulder_friendly",
+        "neutral_grip"
+      ],
+      "contraindications": [
+        "shoulder_pressing_pain_severe"
+      ],
+      "alternatives": [
+        "machine_chest_press",
+        "pushup_handles"
+      ]
+    },
+    {
+      "id": "machine_chest_press",
+      "name": "Machine Chest Press",
+      "movement": "push_horizontal",
+      "muscles_primary": [
+        "Chest"
+      ],
+      "muscles_secondary": [
+        "Triceps"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy",
+        "shoulder_friendly"
+      ],
+      "contraindications": [
+        "shoulder_pressing_pain_severe"
+      ],
+      "alternatives": [
+        "db_bench_neutral"
+      ]
+    },
+    {
+      "id": "landmine_press",
+      "name": "Landmine Press",
+      "movement": "push_vertical",
+      "muscles_primary": [
+        "Shoulders"
+      ],
+      "muscles_secondary": [
+        "Chest",
+        "Triceps"
+      ],
+      "equipment": [
+        "barbell",
+        "landmine"
+      ],
+      "difficulty": 2,
+      "tags": [
+        "hypertrophy",
+        "shoulder_friendly"
+      ],
+      "contraindications": [
+        "shoulder_pressing_pain_severe"
+      ],
+      "alternatives": [
+        "db_shoulder_press_neutral",
+        "cable_press"
+      ]
+    },
+    {
+      "id": "face_pull",
+      "name": "Face Pull",
+      "movement": "prehab",
+      "muscles_primary": [
+        "Rear delts"
+      ],
+      "muscles_secondary": [
+        "Upper back"
+      ],
+      "equipment": [
+        "cable",
+        "band"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "prehab",
+        "scapular",
+        "shoulder_friendly"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "band_pull_apart"
+      ]
+    },
+    {
+      "id": "external_rotation",
+      "name": "External Rotation (Band/Cable)",
+      "movement": "prehab",
+      "muscles_primary": [
+        "Rotator cuff"
+      ],
+      "muscles_secondary": [],
+      "equipment": [
+        "band",
+        "cable"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "prehab",
+        "rotator_cuff",
+        "shoulder_friendly"
+      ],
+      "contraindications": [],
+      "alternatives": []
+    },
+    {
+      "id": "chest_supported_row",
+      "name": "Chest-Supported Row",
+      "movement": "pull_horizontal",
+      "muscles_primary": [
+        "Upper back"
+      ],
+      "muscles_secondary": [
+        "Lats",
+        "Biceps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "difficulty": 2,
+      "tags": [
+        "hypertrophy",
+        "back_friendly"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "cable_row"
+      ]
+    },
+    {
+      "id": "lat_pulldown",
+      "name": "Lat Pulldown",
+      "movement": "pull_vertical",
+      "muscles_primary": [
+        "Lats"
+      ],
+      "muscles_secondary": [
+        "Biceps",
+        "Upper back"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "assisted_pullup"
+      ]
+    },
+    {
+      "id": "goblet_squat",
+      "name": "Goblet Squat",
+      "movement": "squat",
+      "muscles_primary": [
+        "Quads"
+      ],
+      "muscles_secondary": [
+        "Glutes",
+        "Core"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy",
+        "knee_friendly"
+      ],
+      "contraindications": [
+        "knee_pain_deep_flexion"
+      ],
+      "alternatives": [
+        "leg_press",
+        "split_squat_short_range"
+      ]
+    },
+    {
+      "id": "leg_press",
+      "name": "Leg Press",
+      "movement": "squat",
+      "muscles_primary": [
+        "Quads"
+      ],
+      "muscles_secondary": [
+        "Glutes"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy",
+        "knee_friendly"
+      ],
+      "contraindications": [
+        "knee_pain_deep_flexion"
+      ],
+      "alternatives": [
+        "goblet_squat"
+      ]
+    },
+    {
+      "id": "rdl",
+      "name": "Romanian Deadlift",
+      "movement": "hinge",
+      "muscles_primary": [
+        "Hamstrings"
+      ],
+      "muscles_secondary": [
+        "Glutes",
+        "Lower back"
+      ],
+      "equipment": [
+        "barbell",
+        "dumbbell"
+      ],
+      "difficulty": 2,
+      "tags": [
+        "hypertrophy",
+        "strength"
+      ],
+      "contraindications": [
+        "low_back_pain"
+      ],
+      "alternatives": [
+        "hip_thrust",
+        "leg_curl"
+      ]
+    },
+    {
+      "id": "incline_walk",
+      "name": "Incline Treadmill Walk",
+      "movement": "conditioning",
+      "muscles_primary": [
+        "Cardio"
+      ],
+      "muscles_secondary": [],
+      "equipment": [
+        "treadmill"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "fat_loss",
+        "low_impact"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "bike"
+      ]
+    },
+    {
+      "id": "bike",
+      "name": "Stationary Bike",
+      "movement": "conditioning",
+      "muscles_primary": [
+        "Cardio"
+      ],
+      "muscles_secondary": [],
+      "equipment": [
+        "bike"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "fat_loss",
+        "low_impact"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "incline_walk"
+      ]
+    },
+    {
+      "id": "pushup_handles",
+      "name": "Push-up on Handles",
+      "movement": "push_horizontal",
+      "muscles_primary": [
+        "Chest"
+      ],
+      "muscles_secondary": [
+        "Triceps",
+        "Core"
+      ],
+      "equipment": [
+        "bodyweight",
+        "handles"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy",
+        "shoulder_friendly"
+      ],
+      "contraindications": [
+        "shoulder_pressing_pain_severe"
+      ],
+      "alternatives": [
+        "db_bench_neutral"
+      ]
+    },
+    {
+      "id": "split_squat_short_range",
+      "name": "Split Squat (Short Range)",
+      "movement": "lunge",
+      "muscles_primary": [
+        "Quads"
+      ],
+      "muscles_secondary": [
+        "Glutes"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "difficulty": 2,
+      "tags": [
+        "hypertrophy",
+        "knee_friendly"
+      ],
+      "contraindications": [
+        "knee_pain_deep_flexion"
+      ],
+      "alternatives": [
+        "leg_press",
+        "goblet_squat"
+      ]
+    },
+    {
+      "id": "leg_curl",
+      "name": "Leg Curl (Machine)",
+      "movement": "hinge",
+      "muscles_primary": [
+        "Hamstrings"
+      ],
+      "muscles_secondary": [],
+      "equipment": [
+        "machine"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "hypertrophy"
+      ],
+      "contraindications": [],
+      "alternatives": [
+        "rdl"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "goal",
+    "days_per_week",
+    "session_minutes",
+    "level",
+    "equipment_available",
+    "injuries_limitations",
+    "avoid",
+    "preferences"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string",
+      "enum": [
+        "hypertrophy",
+        "strength",
+        "fat_loss",
+        "general"
+      ]
+    },
+    "days_per_week": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "session_minutes": {
+      "type": "integer",
+      "minimum": 20,
+      "maximum": 180
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "equipment_available": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "injuries_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "avoid": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

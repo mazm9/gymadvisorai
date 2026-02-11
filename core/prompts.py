@@ -10,12 +10,13 @@ You must:
 
 TOOL_ROUTER = """Given the user question, choose the best tool:
 - Use vector_rag when user asks for descriptions, recommendations, general info, or factual snippets.
-- Use graph_rag when user asks about relationships, dependencies, causes, 'what leads to what', or multi-hop reasoning.
+- Use graph_rag when user asks about relationships, dependencies, causes, "what leads to what", or multi-hop reasoning.
+- Use matcher when user asks to build/match a training plan based on constraints (goal, injuries, equipment, time).
 - Use none when you can answer without retrieval.
 
 Return JSON with keys:
 intent: string
-tool: one of ["vector_rag","graph_rag","none"]
+tool: one of ["matcher","what_if","analytics","vector_rag","graph_rag","graph_build","none"]
 tool_input: short query to pass into the tool
 """
 
@@ -25,6 +26,6 @@ REFLECTION = """Reflect on the observation:
 Return JSON with keys:
 sufficient: boolean
 reflection: string
-next_tool: one of ["vector_rag","graph_rag","none"]
+next_tool: one of ["matcher","what_if","analytics","vector_rag","graph_rag","graph_build","none"]
 next_tool_input: string
 """

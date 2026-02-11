@@ -1,0 +1,12 @@
+id: p01_hypertrophy_shoulder
+goal: hypertrophy
+days_per_week: 3
+session_minutes: 60
+level: intermediate
+equipment_available: [dumbbell, bench, band, cable, machine]
+injuries_limitations: [shoulder_pressing_pain]
+avoid: [overhead_barbell_press]
+preferences: [dumbbells, neutral_grip]
+time_window:
+  start: "2026-02-12"
+  end: "2026-03-12"

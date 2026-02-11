@@ -1,0 +1,16 @@
+id,name,movement,muscles_primary,equipment,difficulty,tags,contraindications,alternatives
+db_bench_neutral,Dumbbell Bench Press (Neutral Grip),push_horizontal,Chest,dumbbell;bench,2,hypertrophy;shoulder_friendly;neutral_grip,shoulder_pressing_pain_severe,machine_chest_press;pushup_handles
+machine_chest_press,Machine Chest Press,push_horizontal,Chest,machine,1,hypertrophy;shoulder_friendly,shoulder_pressing_pain_severe,db_bench_neutral
+landmine_press,Landmine Press,push_vertical,Shoulders,barbell;landmine,2,hypertrophy;shoulder_friendly,shoulder_pressing_pain_severe,db_shoulder_press_neutral;cable_press
+face_pull,Face Pull,prehab,Rear delts,cable;band,1,prehab;scapular;shoulder_friendly,,band_pull_apart
+external_rotation,External Rotation (Band/Cable),prehab,Rotator cuff,band;cable,1,prehab;rotator_cuff;shoulder_friendly,,
+chest_supported_row,Chest-Supported Row,pull_horizontal,Upper back,dumbbell;bench,2,hypertrophy;back_friendly,,cable_row
+lat_pulldown,Lat Pulldown,pull_vertical,Lats,machine,1,hypertrophy,,assisted_pullup
+goblet_squat,Goblet Squat,squat,Quads,dumbbell,1,hypertrophy;knee_friendly,knee_pain_deep_flexion,leg_press;split_squat_short_range
+leg_press,Leg Press,squat,Quads,machine,1,hypertrophy;knee_friendly,knee_pain_deep_flexion,goblet_squat
+rdl,Romanian Deadlift,hinge,Hamstrings,barbell;dumbbell,2,hypertrophy;strength,low_back_pain,hip_thrust;leg_curl
+incline_walk,Incline Treadmill Walk,conditioning,Cardio,treadmill,1,fat_loss;low_impact,,bike
+bike,Stationary Bike,conditioning,Cardio,bike,1,fat_loss;low_impact,,incline_walk
+pushup_handles,Push-up on Handles,push_horizontal,Chest,bodyweight;handles,1,hypertrophy;shoulder_friendly,shoulder_pressing_pain_severe,db_bench_neutral
+split_squat_short_range,Split Squat (Short Range),lunge,Quads,dumbbell,2,hypertrophy;knee_friendly,knee_pain_deep_flexion,leg_press;goblet_squat
+leg_curl,Leg Curl (Machine),hinge,Hamstrings,machine,1,hypertrophy,,rdl

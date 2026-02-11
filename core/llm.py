@@ -25,17 +25,6 @@ class OpenAILLM(BaseLLM):
         )
         return LLMResponse(text=(resp.choices[0].message.content or ""))
 
-
-    def generate(self, system: str, user: str) -> LLMResponse:
-        resp = self.client.chat.completions.create(
-            model=self.deployment,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        )
-        return LLMResponse(text=(resp.choices[0].message.content or ""))
-
 class AzureOpenAILLM(BaseLLM):
     def __init__(self, api_key: str, endpoint: str, deployment: str, api_version: str):
         from openai import AzureOpenAI
@@ -46,7 +35,8 @@ class AzureOpenAILLM(BaseLLM):
         )
         self.deployment = deployment
 
-    def generate(self, system: str, user: str,) -> LLMResponse:
+    def generate(self, system: str, user: str) -> LLMResponse:
+        # Some Azure deployments don't support temperature/top_p, so we keep it minimal.
         resp = self.client.chat.completions.create(
             model=self.deployment,
             messages=[
@@ -60,6 +50,7 @@ class MockLLM(BaseLLM):
     def generate(self, system: str, user: str) -> LLMResponse:
         u = (system + "\n" + user).lower()
         if "return json" in u:
+            # Router / reflection prompts expect JSON output.
             if "next_tool" in u and "next_tool_input" in u:
                 payload = {
                     "sufficient": True,
@@ -69,9 +60,11 @@ class MockLLM(BaseLLM):
                 }
             else:
                 tool = "vector_rag"
-                if any(k in u for k in ["relac", "zale", "wynika", "powią", "path", "cause", "chain", "depends"]):
+                if any(k in u for k in ["match", "dopas", "plan", "split", "program"]):
+                    tool = "matcher"
+                elif any(k in u for k in ["relac", "zale", "wynika", "powią", "path", "cause", "chain", "depends"]):
                     tool = "graph_rag"
-                payload = {"intent": "Answer the question using tools if needed.", "tool": tool, "tool_input": user[:200]}
+                payload = {"intent": "Answer the question using tools if needed.", "tool": tool, "tool_input": user[:240]}
             return LLMResponse(text=json.dumps(payload, ensure_ascii=False))
         return LLMResponse(text="(MockLLM) Brak klucza. Ustaw LLM_PROVIDER + klucze w .env.")
 

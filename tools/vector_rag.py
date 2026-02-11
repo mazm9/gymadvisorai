@@ -4,6 +4,8 @@ from typing import Any, Dict
 import chromadb
 from chromadb.utils import embedding_functions
 
+from .pdf_reader import read_pdf_text
+
 def _client() -> chromadb.PersistentClient:
     persist_dir = os.getenv("CHROMA_PERSIST_DIR", "data/indexes/chroma")
     return chromadb.PersistentClient(path=persist_dir)
@@ -20,17 +22,23 @@ def _collection(client: chromadb.PersistentClient):
     return client.get_or_create_collection("docs", embedding_function=ef)
 
 def ingest_docs(docs_dir: str = "data/docs") -> Dict[str, Any]:
+    """Each file -> one document (MVP). Supports .txt/.md/.pdf (PDF must have text layer)."""
     client = _client()
     col = _collection(client)
 
     paths = []
-    for ext in ("*.txt", "*.md"):
+    for ext in ("*.txt", "*.md", "*.pdf"):
         paths.extend(glob.glob(os.path.join(docs_dir, ext)))
 
     ids, docs, metas = [], [], []
     for p in paths:
-        with open(p, "r", encoding="utf-8") as f:
-            txt = f.read().strip()
+        ext = os.path.splitext(p)[1].lower()
+        if ext == ".pdf":
+            txt = read_pdf_text(p)
+        else:
+            with open(p, "r", encoding="utf-8") as f:
+                txt = f.read()
+        txt = (txt or "").strip()
         if not txt:
             continue
         doc_id = os.path.basename(p)

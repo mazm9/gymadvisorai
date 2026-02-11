@@ -1,0 +1,5 @@
+{"ts": "2026-02-12T09:00:00", "type": "match_result", "profile_id": "p01_hypertrophy_shoulder", "top": ["db_bench_neutral", "face_pull", "external_rotation"], "notes": "baseline match"}
+{"ts": "2026-02-13T09:00:00", "type": "match_result", "profile_id": "p01_hypertrophy_shoulder", "top": ["db_bench_neutral", "face_pull", "external_rotation"], "notes": "baseline match"}
+{"ts": "2026-02-14T09:00:00", "type": "match_result", "profile_id": "p01_hypertrophy_shoulder", "top": ["db_bench_neutral", "face_pull", "external_rotation"], "notes": "baseline match"}
+{"ts": "2026-02-15T09:00:00", "type": "what_if", "profile_id": "p01_hypertrophy_shoulder", "patch": {"equipment_available": ["dumbbell", "bench", "band"]}, "top": ["db_bench_neutral", "band_pull_apart", "external_rotation"], "notes": "machines removed"}
+{"ts": "2026-02-16T09:00:00", "type": "what_if", "profile_id": "p01_hypertrophy_shoulder", "patch": {"equipment_available": ["dumbbell", "bench", "band"]}, "top": ["db_bench_neutral", "band_pull_apart", "external_rotation"], "notes": "machines removed"}

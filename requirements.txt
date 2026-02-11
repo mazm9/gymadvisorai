@@ -17,3 +17,8 @@ sentence-transformers>=3.0.1
 # Graph
 networkx>=3.3
 neo4j>=5.22.0
+
+# PDF
+pypdf>=4.2.0
+pyyaml>=6.0.1
+jsonschema>=4.22.0

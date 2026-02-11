@@ -1,0 +1,78 @@
+[
+  {
+    "id": "p01_hypertrophy_shoulder",
+    "goal": "hypertrophy",
+    "days_per_week": 3,
+    "session_minutes": 60,
+    "level": "intermediate",
+    "equipment_available": [
+      "dumbbell",
+      "bench",
+      "band",
+      "cable",
+      "machine"
+    ],
+    "injuries_limitations": [
+      "shoulder_pressing_pain"
+    ],
+    "avoid": [
+      "overhead_barbell_press"
+    ],
+    "preferences": [
+      "dumbbells",
+      "neutral_grip"
+    ],
+    "time_window": {
+      "start": "2026-02-12",
+      "end": "2026-03-12"
+    }
+  },
+  {
+    "id": "p02_strength_knee",
+    "goal": "strength",
+    "days_per_week": 3,
+    "session_minutes": 75,
+    "level": "intermediate",
+    "equipment_available": [
+      "barbell",
+      "bench",
+      "machine",
+      "band"
+    ],
+    "injuries_limitations": [
+      "knee_pain_deep_flexion"
+    ],
+    "avoid": [
+      "deep_squat"
+    ],
+    "preferences": [
+      "barbell_compounds"
+    ],
+    "time_window": {
+      "start": "2026-02-12",
+      "end": "2026-03-12"
+    }
+  },
+  {
+    "id": "p03_fatloss_home",
+    "goal": "fat_loss",
+    "days_per_week": 3,
+    "session_minutes": 45,
+    "level": "beginner",
+    "equipment_available": [
+      "bodyweight",
+      "band",
+      "handles",
+      "bike"
+    ],
+    "injuries_limitations": [],
+    "avoid": [],
+    "preferences": [
+      "low_impact"
+    ],
+    "time_window": {
+      "start": "2026-02-12",
+      "end": "2026-03-12"
+    }
+  }
+]

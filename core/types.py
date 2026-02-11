@@ -2,7 +2,7 @@ from __future__ import annotations
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Literal
 
-ToolName = Literal["vector_rag", "graph_rag", "none"]
+ToolName = Literal["vector_rag", "graph_rag", "matcher", "analytics", "graph_build", "what_if", "none"]
 
 class TraceStep(BaseModel):
     step: int
