@@ -1,22 +1,19 @@
-# core
-neo4j>=5.20
-python-dotenv>=1.0
+# UI
+streamlit>=1.36.0
 
-# llm
-openai>=1.0
+# ENV
+python-dotenv>=1.0.1
 
-# rag/nlp
-scikit-learn>=1.4
-numpy>=1.26
-scipy>=1.11
+# LLM / Azure OpenAI
+openai>=1.40.0
 
-# pdf
-pypdf>=4.0
-reportlab>=4.0
+# Data / models
+pydantic>=2.7.0
 
-# util
-tqdm>=4.66
-python-dateutil>=2.9
+# Vector RAG
+chromadb>=0.5.5
+sentence-transformers>=3.0.1
 
-# debugging
-pandas>=2.2
+# Graph
+networkx>=3.3
+neo4j>=5.22.0
